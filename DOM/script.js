@@ -71,3 +71,23 @@ document.addEventListener("keydown", (e) => {
   }
   ring(e.key);
 });
+
+//.........................
+// scroll Event
+
+const nav = document.querySelector("nav");
+
+window.addEventListener("scroll", () => {
+  if (scrollY > 200) {
+    nav.style.top = "0";
+  } else {
+    nav.style.top = "-50px";
+  }
+});
+
+//...............................
+// Form Event
+
+const inputName = document.querySelector("input[type='text']");
+
+inputName.addEventListener("input", (e) => {});
