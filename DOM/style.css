@@ -57,9 +57,33 @@ nav {
   transition: 0.8s ease;
 }
 
+nav::after {
+  position: absolute;
+  content: "";
+  height: 150px;
+  width: 150px;
+  background: radial-gradient(
+    circle closest-side,
+    rgba(255, 255, 255, 0.94),
+    transparent
+  );
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  left: var(--x);
+  top: var(--y);
+  opacity: 0;
+}
+
+nav:hover::after {
+  opacity: 1;
+}
+
 ul {
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+.box-clicked {
+  transform: scale(0.7);
 }

@@ -88,6 +88,113 @@ window.addEventListener("scroll", () => {
 //...............................
 // Form Event
 
-const inputName = document.querySelector("input[type='text']");
+const inputName = document.querySelector('input[type="text"]');
+const select = document.querySelector("select");
+const form = document.querySelector("form");
 
-inputName.addEventListener("input", (e) => {});
+let pseudo = "";
+let language = "";
+
+inputName.addEventListener("input", (e) => {
+  pseudo = e.target.value;
+});
+select.addEventListener("input", (e) => {
+  language = e.target.value;
+});
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (cgv.checked) {
+    document.querySelector("form > div").innerHTML = `
+    <h3>${pseudo}</h3>
+    <h4>Language ${language}</h4>
+    `;
+  } else {
+    alert("Veuillez cocher cgv");
+  }
+});
+//......................................
+// Load event
+
+window.addEventListener("load", () => {
+  console.log("document chargé");
+});
+
+//.....................
+const boxes = document.querySelectorAll(".box");
+
+boxes.forEach((box) => {
+  box.addEventListener("click", (e) => {
+    box.classList.toggle("box-clicked");
+    // e.target.style.background = "yellow";
+    box.style.borderRadius = "50px";
+  });
+});
+
+//-----------------------------
+// addEventListener vs onclick
+
+document.body.onclick = () => {
+  console.log("click");
+};
+
+//..................................
+// stop  propagation
+// questionContainer.addEventListener("click", (e) => {
+//   alert("test");
+//   e.stopImmediatePropagation;
+// });
+
+// removeEventListener
+
+//................................
+// BOM
+
+// console.log(window.innerHeight);
+// console.log(window.innerWidth);
+// console.log(window.scrollY);
+
+// Evenement adossés a window
+btn2.addEventListener("click", () => {
+  confirm("voulez vous quitter ");
+});
+
+//prompt
+
+btn1.addEventListener("click", () => {
+  let answer = prompt("Entrez votre nom");
+  questionContainer.innerHTML += `<h3>Bravo ${answer}</h3>`;
+});
+
+//.................................
+//Time
+// setTimeout(() => {
+//   questionContainer.style.borderRadius = "300px";
+// }, 3000);
+
+// setInterval(() => {
+//   document.body.innerHTML += "<div class ='box'><h2>salut</h2></div>";
+// }, 4000);
+
+// let interval = setInterval(() => {
+//   document.body.innerHTML += "<div class ='box'><h2>salut</h2></div>";
+// }, 4000);
+
+// document.body.addEventListener("click", (e) => {
+//   // e.target.remove();
+//   clearInterval(interval);
+// });
+
+// Location
+
+// console.log(location.href);
+// console.log(location.host);
+// console.log(location.pathname);
+// console.log(location.search);
+// location.replace("http://lequipe.fr");
+
+//setproperty
+
+window.addEventListener("mousemove", (e) => {
+  nav.style.setProperty("--x", e.layerX + "px");
+  nav.style.setProperty("--y", e.layerY + "px");
+});
