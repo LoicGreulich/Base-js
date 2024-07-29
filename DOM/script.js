@@ -195,6 +195,10 @@ btn1.addEventListener("click", () => {
 //setproperty
 
 window.addEventListener("mousemove", (e) => {
-  nav.style.setProperty("--x", e.layerX + "px");
-  nav.style.setProperty("--y", e.layerY + "px");
+  if (scrollY > 250) {
+    nav.style.setProperty("--x", e.layerX + "px");
+    nav.style.setProperty("--y", e.layerY + "px");
+  } else {
+    nav.style.oppacity = "0";
+  }
 });
