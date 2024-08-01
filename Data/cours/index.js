@@ -84,7 +84,8 @@ for (i = 0; i < data.length; i++) {
 document.body.addEventListener("click", (e) => {
   switch (e.target.id) {
     case "javascript":
-      document.body.style.background = "yellow";
+      document.body.style.textTransform = "uppercase";
+      javascript.style.background = "yellow";
       break;
     case "php":
       document.body.style.background = "violet";
