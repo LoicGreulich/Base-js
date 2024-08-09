@@ -1,30 +1,25 @@
 const form = document.querySelector("form");
 
-// Storage part
-function storeList() {
-  window.localStorage.todoList = list.innerHTML;
-}
+let storeList = () => {
+  window.localStorage.hello = list.innerHTML;
+};
 
-function getTodos() {
-  if (window.localStorage.todoList) {
-    list.innerHTML = window.localStorage.todoList;
+let goList = () => {
+  if (window.localStorage.hello) {
+    list.innerHTML = window.localStorage.hello;
   } else {
-    list.innerHTML = `<li>Cliquez sur un todo pour le supprimer</li>`;
+    list.innerHTML = `<li>Supprimer la todo</li>`;
   }
-}
+};
+window.addEventListener("load", goList);
 
-window.addEventListener("load", getTodos);
-
-// Add element
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-
   list.innerHTML += `<li>${item.value}</li>`;
   item.value = "";
   storeList();
 });
 
-// Remove element
 list.addEventListener("click", (e) => {
   if (e.target.classList.contains("checked")) {
     e.target.remove();
