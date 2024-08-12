@@ -1,26 +1,25 @@
 const form = document.querySelector("form");
+
 const inputs = document.querySelectorAll(
-  'input[type="text"],input[type="password"]'
+  'input[type = "text"],input[type = "password"]'
 );
-let pseudo, email, password, confirmPassword;
-const progressBar = document.getElementById("progress-bar");
+const progressBar = document.querySelector("#progress-bar");
+let pseudo, email, password, confirmPass;
 
 const errorDisplay = (tag, message, valid) => {
   const container = document.querySelector("." + tag + "-container");
-  const span = document.querySelector("." + tag + "-container > span");
-
+  const span = document.querySelector("." + tag + "-container > span ");
   if (!valid) {
     container.classList.add("error");
     span.textContent = message;
   } else {
     container.classList.remove("error");
-    span.textContent = message;
   }
 };
 
-const pseudoChecker = (value) => {
+const pseudoCheckeur = (value) => {
   if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-    errorDisplay("pseudo", "le pseudo doit faire entre 3 et 20 caractére");
+    errorDisplay("pseudo", "pseudo non valide");
     pseudo = null;
   } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
     errorDisplay(
@@ -34,9 +33,9 @@ const pseudoChecker = (value) => {
   }
 };
 
-const emailChecker = (value) => {
+const emailCheckeur = (value) => {
   if (!value.match(/^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i)) {
-    errorDisplay("email", "le mail n'est pas valide");
+    errorDisplay("email", "l'email n'est pas correct");
     email = null;
   } else {
     errorDisplay("email", "", true);
@@ -44,37 +43,41 @@ const emailChecker = (value) => {
   }
 };
 
-const passwordChecker = (value) => {
-  progressBar.classList = "";
+const passwordCheckeur = (value) => {
   if (
     !value.match(
       /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/
     )
   ) {
-    errorDisplay("password", "mot de passe invalide");
+    errorDisplay("password", "mot de passe incorrect");
     progressBar.classList.add("progressRed");
     password = null;
   } else if (value.length < 12) {
-    progressBar.classList.add("progressBlue");
     errorDisplay("password", "", true);
+    progressBar.classList.add("progressBlue");
     password = value;
   } else {
     progressBar.classList.add("progressGreen");
     errorDisplay("password", "", true);
     password = value;
   }
-  if (confirmPassword) confirmChecker(confirmPassword);
+  if (value.length === 0) {
+    progressBar.classList = "";
+    errorDisplay("password", "");
+    password = null;
+  }
+  if (confirmPass) {
+    confirmPassCheckeur(confirmPass);
+  }
 };
 
-const confirmChecker = (value) => {
-  if (value !== password) {
-    errorDisplay("confirm", "mot de passe de ne correspond pas");
-
-    confirmPassword = false;
-  } else {
+const confirmPassCheckeur = (value) => {
+  if (value === password) {
     errorDisplay("confirm", "", true);
-
-    confirmPassword = true;
+    confirmPass = true;
+  } else {
+    errorDisplay("confirm", "ne correspond pas");
+    confirmPass = false;
   }
 };
 
@@ -82,40 +85,40 @@ inputs.forEach((input) => {
   input.addEventListener("input", (e) => {
     switch (e.target.id) {
       case "pseudo":
-        pseudoChecker(e.target.value);
+        pseudoCheckeur(e.target.value);
         break;
       case "email":
-        emailChecker(e.target.value);
+        emailCheckeur(e.target.value);
         break;
       case "password":
-        passwordChecker(e.target.value);
+        passwordCheckeur(e.target.value);
         break;
       case "confirm":
-        confirmChecker(e.target.value);
+        confirmPassCheckeur(e.target.value);
         break;
       default:
-        nul;
+        null;
     }
   });
 });
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-
-  if (pseudo && email && password && confirmPassword) {
-    const data = {
+  if (pseudo && email && password && confirmPass) {
+    let data = {
       pseudo,
       email,
       password,
     };
+
     progressBar.classList = "";
     inputs.forEach((input) => (input.value = ""));
 
     pseudo = null;
     email = null;
     password = null;
-    confirmPassword = null;
-    alert("Inscription validé");
+    confirmPass = null;
+    alert("valider");
   } else {
     alert("veuillez remplir");
   }

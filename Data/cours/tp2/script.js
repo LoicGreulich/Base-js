@@ -1,23 +1,22 @@
 const form = document.querySelector("form");
 
-let storeList = () => {
-  window.localStorage.hello = list.innerHTML;
+let storList = () => {
+  window.localStorage.toList = list.innerHTML;
 };
 
 let goList = () => {
-  if (window.localStorage.hello) {
-    list.innerHTML = window.localStorage.hello;
+  if (window.localStorage.toList) {
+    list.innerHTML = window.localStorage.toList;
   } else {
-    list.innerHTML = `<li>Supprimer la todo</li>`;
+    list.innerHTML = `<li>Pour supprimer todolist</li>`;
   }
 };
-window.addEventListener("load", goList);
-
+goList();
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   list.innerHTML += `<li>${item.value}</li>`;
   item.value = "";
-  storeList();
+  storList();
 });
 
 list.addEventListener("click", (e) => {
@@ -26,5 +25,5 @@ list.addEventListener("click", (e) => {
   } else {
     e.target.classList.add("checked");
   }
-  storeList();
+  storList();
 });
