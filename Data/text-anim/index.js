@@ -1,12 +1,11 @@
 const target = document.getElementById("target");
-let array = ["développeur", "photographe", "créatif"];
+let array = ["sportif", "historien", "philosophe"];
 let wordIndex = 0;
 let letterIndex = 0;
 
 const creatLetter = () => {
   const letter = document.createElement("span");
   target.appendChild(letter);
-
   letter.textContent = array[wordIndex][letterIndex];
 
   setTimeout(() => {
@@ -25,9 +24,9 @@ const loop = () => {
       letterIndex++;
       loop();
     } else {
-      wordIndex++;
-      letterIndex = 0;
       setTimeout(() => {
+        wordIndex++;
+        letterIndex = 0;
         loop();
       }, 2800);
     }
