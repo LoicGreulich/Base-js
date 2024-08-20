@@ -117,3 +117,4 @@ fetch("data.json")
 // Local storage
 
 // Cookie + notif
+document.cookie = "pseudo=FS;path=/;max-age=45000; secure; samesite";

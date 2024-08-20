@@ -1,19 +1,19 @@
 let userData = [];
 
-const userFetch = async () => {
+const fetchUser = async () => {
   await fetch("https://randomuser.me/api/?results=24")
     .then((res) => res.json())
     .then((data) => (userData = data.results));
-
-  console.log(userData);
 };
 
 const userDisplay = async () => {
-  await userFetch();
+  await fetchUser();
 
-  const dateParse = (date) => {
+  console.log(userData[0]);
+
+  // voir doc => toLocaleDateString
+  const dateParser = (date) => {
     let newDate = new Date(date).toLocaleDateString("fr-FR", {
-      weekday: "long",
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -23,21 +23,25 @@ const userDisplay = async () => {
 
   const dateCalc = (date) => {
     let today = new Date();
-    let todayTimestemp = Date.parse(today);
-    let timestemp = Date.parse(date);
+    let todayTimestamp = Date.parse(today);
+    let timestamp = Date.parse(date);
 
-    return Math.ceil((todayTimestemp - timestemp) / 8.64e7);
+    return Math.ceil((todayTimestamp - timestamp) / 8.64e7);
   };
 
-  document.body.innerHTML = userData.map(
-    (user) =>
-      `<div class ="card" >
-      <img src=${user.picture.large}
-    <h3>${user.name.first} ${user.name.last}</h3>
-    <p>${user.location.city} ${dateParse(user.dob.date)}</p>
-    <em>membres depuis : ${dateCalc(user.registered.date)} jours</em>
-    </div>`
-  );
+  document.body.innerHTML = userData
+    .map(
+      (user) =>
+        `
+          <div class="card">
+            <img src=${user.picture.large} >
+            <h3>${user.name.first} ${user.name.last}</h3>
+            <p>${user.location.city}, ${dateParser(user.dob.date)}</p>
+            <em>Membre depuis : ${dateCalc(user.registered.date)} jours</em>
+          </div>
+        `
+    )
+    .join("");
 };
 
 userDisplay();

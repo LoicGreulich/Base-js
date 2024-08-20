@@ -43,8 +43,8 @@ input:focus {
 #result > li {
   flex: 1 0 25%;
   min-width: 280px;
-  /* border: 1px solid #16d9e7; */
-  background: white;
+  border: 1px solid #16d9e7;
+  background: rgb(198, 17, 17);
   margin: 10px;
   border-radius: 5px;
   padding: 10px 20px;
