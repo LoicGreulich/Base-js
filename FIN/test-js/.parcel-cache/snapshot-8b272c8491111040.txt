@@ -1,0 +1,11 @@
+10
+47C:\Users\nadin\Desktop\Base-js\FIN\test-js\dist133703597774952051 1
+69C:\Users\nadin\Desktop\Base-js\FIN\test-js\dist\index.c36f364e.js.map133703597774862286 0
+65C:\Users\nadin\Desktop\Base-js\FIN\test-js\dist\index.c36f364e.js133703597774642358 0
+58C:\Users\nadin\Desktop\Base-js\FIN\test-js\dist\index.html133703597774551122 0
+71C:\Users\nadin\Desktop\Base-js\FIN\test-js\dist\test-js.3464ddca.js.map133703597774872257 0
+49C:\Users\nadin\Desktop\Base-js\FIN\test-js\add.js133703601601633722 0
+67C:\Users\nadin\Desktop\Base-js\FIN\test-js\dist\test-js.3464ddca.js133703597774682244 0
+53C:\Users\nadin\Desktop\Base-js\FIN\test-js\index.html133703619416398916 0
+51C:\Users\nadin\Desktop\Base-js\FIN\test-js\index.js133703617740588268 0
+55C:\Users\nadin\Desktop\Base-js\FIN\test-js\package.json133703595374431068 0
